@@ -1,0 +1,103 @@
+{
+  "name": "immer-context",
+  "version": "0.0.1",
+  "private": true,
+  "description": "-- todo --",
+  "author": "E. Curry <e@curry.sh> (https://github.com/Shurelia)",
+  "homepage": "-- todo --",
+  "repository": {
+    "type": "git",
+    "url": "-- todo --"
+  },
+  "bugs": {
+    "url": "-- todo --"
+  },
+  "license": "MIT",
+  "main": "dist/immerContext.cjs.js",
+  "module": "dist/immerContext.esm.js",
+  "jsnext:main": "dist/immerContext.esm.js",
+  "react-native": "dist/immerContext.esm.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "watch": "jest --watch",
+    "test": "jest",
+    "build": "npm run clean && rollup -c",
+    "build.watch": "rollup -cw",
+    "clean": "rimraf dist",
+    "precommit": "lint-staged",
+    "release": "np --no-cleanup"
+  },
+  "keywords": [
+    "react",
+    "context",
+    "immutable",
+    "mutable",
+    "immer"
+  ],
+  "dependencies": {
+    "create-react-context": "^0.2.3",
+    "immer": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.2",
+    "@types/react": "^16.4.14",
+    "@types/react-dom": "^16.0.7",
+    "husky": "^0.14.3",
+    "jest": "^23.6.0",
+    "jest-dom": "^1.12.0",
+    "lint-staged": "^7.2.2",
+    "prettier": "^1.14.2",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "react-testing-library": "^5.0.1",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.66.0",
+    "rollup-plugin-alias": "^1.4.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-typescript-path-mapping": "^1.0.2",
+    "rollup-plugin-typescript2": "^0.17.0",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.0.3"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.0.0",
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --parser typescript --write",
+      "tslint",
+      "git add"
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest",
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "testRegex": "/__tests__/[^/]*[jt]sx?$",
+    "globals": {
+      "ts-jest": {
+        "enableTsDiagnostics": true,
+        "tsConfigFile": "__tests__/tsconfig.json"
+      }
+    },
+    "moduleNameMapper": {
+      "~/(.*)": "<rootDir>/src/$1"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}

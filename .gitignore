@@ -1,0 +1,12 @@
+node_modules
+.expo
+npm-debug.*
+dist
+yarn-error.log
+appium.log
+bin
+.vs
+
+# Auto generated files
+#
+.rpt2_cache

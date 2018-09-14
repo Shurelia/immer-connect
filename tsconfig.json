@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "noEmit": true,
+    "strict": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "module": "esnext",
+    "target": "es2015",
+    "jsx": "react",
+    "lib": ["esnext", "dom"],
+    "baseUrl": "./"
+  },
+  "exclude": ["node_modules"],
+  "include": ["./src/**/*"]
+}
