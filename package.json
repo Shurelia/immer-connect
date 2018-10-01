@@ -2,15 +2,15 @@
   "name": "immer-context",
   "version": "0.0.1",
   "private": true,
-  "description": "-- todo --",
+  "description": "Shared, mutable state across components",
   "author": "E. Curry <e@curry.sh> (https://github.com/Shurelia)",
-  "homepage": "-- todo --",
+  "homepage": "https://github.com/Shurelia/immer-context",
   "repository": {
     "type": "git",
-    "url": "-- todo --"
+    "url": "git@github.com:Shurelia/immer-context.git"
   },
   "bugs": {
-    "url": "-- todo --"
+    "url": "https://github.com/Shurelia/immer-context/issues"
   },
   "license": "MIT",
   "main": "dist/immerContext.cjs.js",
