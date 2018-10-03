@@ -7,13 +7,13 @@ const external = [
   ...Object.keys(pkg.peerDependencies)
 ];
 
-function getConfig(format, declaration = false) {
+function getConfig(format) {
   return {
     input: 'src/index.tsx',
     output: {
       exports: 'named',
-      file: `dist/immerContext.${format}.js`,
-      name: 'immerContext',
+      file: `dist/immerConnect.${format}.js`,
+      name: 'immerConnect',
       format,
       sourcemap: true
     },
@@ -22,14 +22,12 @@ function getConfig(format, declaration = false) {
       resolve(),
       typescript({
         tsconfig: 'tsconfig.json',
-        typescript: require('typescript'),
-        tsconfigOverride: { declaration },
-        clean: true
+        typescript: require('typescript')
       })
     ]
   };
 }
 
-const config = [getConfig('cjs'), getConfig('esm', true)];
+const config = [getConfig('cjs'), getConfig('esm')];
 
 export default config;

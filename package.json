@@ -1,22 +1,22 @@
 {
-  "name": "immer-context",
+  "name": "immer-connect",
   "version": "0.0.1",
   "private": true,
   "description": "Shared, mutable state across components",
   "author": "E. Curry <e@curry.sh> (https://github.com/Shurelia)",
-  "homepage": "https://github.com/Shurelia/immer-context",
+  "homepage": "https://github.com/Shurelia/immer-connect",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Shurelia/immer-context.git"
+    "url": "git@github.com:Shurelia/immer-connect.git"
   },
   "bugs": {
-    "url": "https://github.com/Shurelia/immer-context/issues"
+    "url": "https://github.com/Shurelia/immer-connect/issues"
   },
   "license": "MIT",
-  "main": "dist/immerContext.cjs.js",
-  "module": "dist/immerContext.esm.js",
-  "jsnext:main": "dist/immerContext.esm.js",
-  "react-native": "dist/immerContext.esm.js",
+  "main": "dist/immerConnect.cjs.js",
+  "module": "dist/immerConnect.esm.js",
+  "jsnext:main": "dist/immerConnect.esm.js",
+  "react-native": "dist/immerConnect.esm.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist/"
@@ -25,8 +25,9 @@
   "scripts": {
     "watch": "jest --watch",
     "test": "jest",
-    "build": "npm run clean && rollup -c",
-    "build.watch": "rollup -cw",
+    "build": "npm run clean && rollup -c && cpx -v \"src/index.d.ts\" dist",
+    "build.watch": "concurrently -k \"rollup -cw\" \"npm run build.types.watch\"",
+    "build.types.watch": "cpx -vw \"src/index.d.ts\" dist",
     "clean": "rimraf dist",
     "precommit": "lint-staged",
     "release": "np --no-cleanup"
@@ -46,6 +47,8 @@
     "@types/jest": "^23.3.2",
     "@types/react": "^16.4.14",
     "@types/react-dom": "^16.0.7",
+    "concurrently": "^4.0.1",
+    "cpx": "^1.5.0",
     "husky": "^0.14.3",
     "jest": "^23.6.0",
     "jest-dom": "^1.12.0",
