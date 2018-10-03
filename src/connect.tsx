@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Connect, ImmerContextProps } from './index.d';
+import { AllowableStateTypes, Connect, ImmerContextProps } from './index.d';
 
-export function createConnect<DeclaredContext>(
+export function createConnect<State extends AllowableStateTypes>(
   Consumer: React.Consumer<ImmerContextProps<any>>
 ) {
-  const connect: Connect<DeclaredContext> = Component => {
+  const connect: Connect<State> = Component => {
     return props => (
       <Consumer>
         {val => (

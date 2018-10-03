@@ -15,10 +15,10 @@ const initialState: IContextState = {
   clickCount: 0
 };
 
-// defaultState param can be ignored when we are 100% certain all connected components have a parent provider
-const { Provider, connect } = createBindings<IContextState>(
-  {} as IContextState
-);
+const { Provider, connect } = createBindings<IContextState>({
+  value: -999,
+  clickCount: -999
+});
 
 class App extends React.Component {
   public render() {

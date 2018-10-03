@@ -2,7 +2,7 @@ import { Draft } from 'immer';
 import { Component, ComponentClass, ComponentType } from 'react';
 
 export interface ICreateBindings {
-  <State>(defaultState: State): {
+  <State extends AllowableStateTypes>(defaultState: State): {
     connect: Connect<State>;
     Provider: ImmerContextProvider<State>;
   };
@@ -11,7 +11,7 @@ export interface ICreateBindings {
 export const createBindings: ICreateBindings;
 export default createBindings;
 
-export interface Connect<State> {
+export interface Connect<State extends AllowableStateTypes> {
   <Context extends State, OwnProps>(
     Component: React.StatelessComponent<OwnProps & ImmerContextProps<Context>>
   ): React.ComponentType<
@@ -19,20 +19,24 @@ export interface Connect<State> {
   >;
 }
 
-export type ImmerContextProvider<S> = React.ComponentClass<
-  ImmerContextProviderProps<S>
->;
+export type ImmerContextProvider<
+  S extends AllowableStateTypes
+> = React.ComponentClass<ImmerContextProviderProps<S>>;
 
-export type ImmerContextUpdateFn<S> = (draftState: Draft<S>) => void | S;
+export type ImmerContextUpdateFn<S extends AllowableStateTypes> = (
+  draftState: Draft<S>
+) => void | S;
 
-export interface ImmerContextProps<S> {
+export interface ImmerContextProps<S extends AllowableStateTypes> {
   state: S;
   setState: (fn: ImmerContextUpdateFn<S>) => void;
 }
 
-export interface ImmerContextProviderProps<S> {
-  initialState: S;
+export interface ImmerContextProviderProps<S extends AllowableStateTypes> {
+  initialState?: S;
 }
+
+export type AllowableStateTypes = boolean | string | number | any[] | {};
 
 export interface InferrableComponentEnhancer<InjectedProps, NeedsProps> {
   <P extends InjectedProps>(Component: P): ComponentType<
