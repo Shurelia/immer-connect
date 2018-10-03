@@ -16,10 +16,7 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "paths": {
-      "src/*": ["../../src/*"]
-    }
+    "noUnusedLocals": true
   },
   "exclude": [
     "node_modules",
