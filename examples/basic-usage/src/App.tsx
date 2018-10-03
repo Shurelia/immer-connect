@@ -2,7 +2,7 @@ import {
   createBindings,
   ImmerContextProps,
   ImmerContextUpdateFn
-} from 'immer-context';
+} from 'immer-connect';
 import * as React from 'react';
 
 interface IContextState {
