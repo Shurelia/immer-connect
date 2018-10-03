@@ -3265,9 +3265,16 @@ ignore-walk@^3.0.1:
   dependencies:
     minimatch "^3.0.4"
 
-immer@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-1.7.1.tgz#39e46b415c1086557c053d3657e5a348fbf2f971"
+"immer-connect@github:Shurelia/immer-connect#dist":
+  version "0.0.1"
+  resolved "https://codeload.github.com/Shurelia/immer-connect/tar.gz/c632135a48fa7ce4a5d194447a23033d428b34df"
+  dependencies:
+    create-react-context "^0.2.3"
+    immer "^1.6.0"
+
+immer@^1.6.0:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-1.7.2.tgz#a51e9723c50b27e132f6566facbec1c85fc69547"
 
 import-lazy@^2.1.0:
   version "2.1.0"
