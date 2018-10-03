@@ -49,13 +49,13 @@ const UpdateControllerRender: React.SFC<
 > = props => {
   return (
     <div>
-      <button onClick={() => props.setState(actions.subtract)}>-</button>
-      <button onClick={() => props.setState(actions.add)}>+</button>
+      <button onClick={() => props.setCtx(actions.subtract)}>-</button>
+      <button onClick={() => props.setCtx(actions.add)}>+</button>
     </div>
   );
 };
 
-const UpdateController = connect(UpdateControllerRender);
+const UpdateController = connect()(UpdateControllerRender);
 
 interface IValueDisplayOwnProps {
   label: string;
@@ -66,36 +66,37 @@ const ValueDisplayRender: React.SFC<
   return (
     <div>
       <div>
-        {props.label}: {props.state.value}
+        {props.label}: {props.ctx.value}
       </div>
     </div>
   );
 };
 
-// Explicitly passing state interface and ownprops as type params guarantees
-// type safety of required props
-const ValueDisplay = connect<IContextState, IValueDisplayOwnProps>(
-  ValueDisplayRender
-);
+// Leave connect param empty to pass ctx and setCtx directly to component
+const ValueDisplay = connect()(ValueDisplayRender);
 
 interface IClickCountDisplayOwnProps {
   label: string;
 }
 const ClickCountDisplayRender: React.SFC<
-  ImmerContextProps<IContextState> & IClickCountDisplayOwnProps
+  IClickCountDisplayOwnProps & IClickCountDisplayMapProps
 > = props => {
   return (
     <div>
       <div>
-        {props.label}: {props.state.clickCount}
+        {props.label}: {props.value}
       </div>
     </div>
   );
 };
 
-// Inference of required props and injected props works well when
-// ImmerContextProps<State> is used as a prop
-const ClickCountDisplay = connect(ClickCountDisplayRender);
+// Pass a 'map to props' function to connect to get specific things out of state
+// Hint: use selectors here!
+type IClickCountDisplayMapProps = ReturnType<typeof mapToProps>;
+const mapToProps = (s: IContextState) => ({
+  value: s.clickCount
+});
+const ClickCountDisplay = connect(mapToProps)(ClickCountDisplayRender);
 
 const actions: { [key: string]: ImmerContextUpdateFn<IContextState> } = {
   add: s => {
