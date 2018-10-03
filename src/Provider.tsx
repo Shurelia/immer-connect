@@ -5,7 +5,7 @@ import {
   ImmerConnectInjectedProps,
   ImmerConnectProviderProps,
   SetCtx
-} from './index.d';
+} from './types';
 
 interface ImmerContextProviderState<S> {
   value: S;

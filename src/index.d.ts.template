@@ -1,0 +1,6 @@
+
+import { Draft } from 'immer';
+import { ComponentType } from 'react';
+
+export declare const createBindings: ICreateBindings;
+export default createBindings;

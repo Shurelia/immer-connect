@@ -2,12 +2,9 @@ import createReactContext from 'create-react-context';
 import { Draft } from 'immer';
 import * as React from 'react';
 import { createConnect } from './connect';
-import {
-  AllowableStateTypes,
-  ICreateBindings,
-  ImmerConnectInjectedProps
-} from './index.d';
 import { createProvider } from './Provider';
+import { AllowableStateTypes, ImmerConnectInjectedProps } from './types';
+import { ICreateBindings } from './typesInternal';
 
 export const createBindings: ICreateBindings = <S extends AllowableStateTypes>(
   defaultState: S

@@ -1,7 +1,7 @@
 import {
   createBindings,
-  ImmerContextProps,
-  ImmerContextUpdateFn
+  ImmerConnectInjectedProps,
+  SetCtxInnerFn
 } from 'immer-connect';
 import * as React from 'react';
 
@@ -45,7 +45,7 @@ const Content: React.SFC<{}> = props => {
 };
 
 const UpdateControllerRender: React.SFC<
-  ImmerContextProps<IContextState>
+  ImmerConnectInjectedProps<IContextState>
 > = props => {
   return (
     <div>
@@ -61,7 +61,7 @@ interface IValueDisplayOwnProps {
   label: string;
 }
 const ValueDisplayRender: React.SFC<
-  ImmerContextProps<IContextState> & IValueDisplayOwnProps
+  ImmerConnectInjectedProps<IContextState> & IValueDisplayOwnProps
 > = props => {
   return (
     <div>
@@ -98,7 +98,7 @@ const mapToProps = (s: IContextState) => ({
 });
 const ClickCountDisplay = connect(mapToProps)(ClickCountDisplayRender);
 
-const actions: { [key: string]: ImmerContextUpdateFn<IContextState> } = {
+const actions: { [key: string]: SetCtxInnerFn<IContextState> } = {
   add: s => {
     s.value += 1;
     s.clickCount += 1;

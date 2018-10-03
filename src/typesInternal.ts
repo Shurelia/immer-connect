@@ -1,5 +1,10 @@
-import { Draft } from 'immer';
 import { ComponentType } from 'react';
+import {
+  AllowableStateTypes,
+  ImmerConnectInjectedProps,
+  ImmerConnectProviderProps,
+  SetCtx
+} from './types';
 
 export interface ICreateBindings {
   <State extends AllowableStateTypes>(defaultState: State): {
@@ -8,8 +13,9 @@ export interface ICreateBindings {
   };
 }
 
-export const createBindings: ICreateBindings;
-export default createBindings;
+type ImmerContextProvider<S extends AllowableStateTypes> = React.ComponentClass<
+  ImmerConnectProviderProps<S>
+>;
 
 export interface Connect<State extends AllowableStateTypes> {
   <no_map = {}, OwnProps = {}>(): InferrableComponentEnhancer<
@@ -29,29 +35,6 @@ export interface ConnectMap<
 > {
   (ctx: State, setCtx: SetCtx<State>, ownProps: OwnProps): MapProps;
 }
-
-export interface SetCtx<S extends AllowableStateTypes> {
-  (fn: SetCtxInnerFn<S>): void;
-}
-
-interface SetCtxInnerFn<S extends AllowableStateTypes> {
-  (draftState: Draft<S>): void | S;
-}
-
-export interface ImmerConnectInjectedProps<S extends AllowableStateTypes> {
-  ctx: S;
-  setCtx: (fn: SetCtxInnerFn<S>) => void;
-}
-
-export interface ImmerConnectProviderProps<S extends AllowableStateTypes> {
-  initialState?: S;
-}
-
-export type AllowableStateTypes = boolean | string | number | any[] | {};
-
-type ImmerContextProvider<S extends AllowableStateTypes> = React.ComponentClass<
-  ImmerConnectProviderProps<S>
->;
 
 // InferrableComponentEnhancer taken from react-redux types
 // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-redux/index.d.ts

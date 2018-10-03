@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-  AllowableStateTypes,
-  Connect,
-  ConnectMap,
-  ImmerConnectInjectedProps
-} from './index.d';
+import { AllowableStateTypes, ImmerConnectInjectedProps } from './types';
+import { Connect, ConnectMap } from './typesInternal';
 
 export function createConnect<State extends AllowableStateTypes>(
   Consumer: React.Consumer<ImmerConnectInjectedProps<State>>
