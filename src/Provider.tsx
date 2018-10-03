@@ -2,9 +2,9 @@ import produce from 'immer';
 import * as React from 'react';
 import {
   AllowableStateTypes,
-  ImmerContextProps,
-  ImmerContextProviderProps,
-  ImmerContextUpdateFn
+  ImmerConnectInjectedProps,
+  ImmerConnectProviderProps,
+  SetCtx
 } from './index.d';
 
 interface ImmerContextProviderState<S> {
@@ -12,11 +12,11 @@ interface ImmerContextProviderState<S> {
 }
 
 type ReactProvider<S> = React.ComponentType<
-  React.ProviderProps<ImmerContextProps<S>>
+  React.ProviderProps<ImmerConnectInjectedProps<S>>
 >;
 
 type ImmerConnectProvider<S> = React.ComponentClass<
-  ImmerContextProviderProps<S>,
+  ImmerConnectProviderProps<S>,
   ImmerContextProviderState<S>
 >;
 
@@ -25,19 +25,19 @@ export const createProvider = <S extends AllowableStateTypes>(
   defaultState: S
 ): ImmerConnectProvider<S> => {
   return class Provider extends React.Component<
-    ImmerContextProviderProps<S>,
+    ImmerConnectProviderProps<S>,
     ImmerContextProviderState<S>
   > {
     static defaultProps = {
       initialState: defaultState
     };
 
-    constructor(props: ImmerContextProviderProps<S>) {
+    constructor(props: ImmerConnectProviderProps<S>) {
       super(props);
       this.state = { value: props.initialState! }; // defaultProps handles undefined case
     }
 
-    updateState = (fn: ImmerContextUpdateFn<S>) => {
+    updateState: SetCtx<S> = fn => {
       this.setState({ value: produce(this.state.value, s => fn(s)) });
     };
 

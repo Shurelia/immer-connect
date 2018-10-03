@@ -5,7 +5,7 @@ import { createConnect } from './connect';
 import {
   AllowableStateTypes,
   ICreateBindings,
-  ImmerContextProps
+  ImmerConnectInjectedProps
 } from './index.d';
 import { createProvider } from './Provider';
 
@@ -26,7 +26,7 @@ const getContext = <S extends AllowableStateTypes>(defaultState: S) => {
   const setCtx = (fn: (s: Draft<S>) => void) => {};
   const ctx = defaultState;
   return createReactContext({ ctx, setCtx }) as React.Context<
-    ImmerContextProps<S>
+    ImmerConnectInjectedProps<S>
   >; // create-react-context using incompatible typings
 };
 

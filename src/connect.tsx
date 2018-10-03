@@ -3,11 +3,11 @@ import {
   AllowableStateTypes,
   Connect,
   ConnectMap,
-  ImmerContextProps
+  ImmerConnectInjectedProps
 } from './index.d';
 
 export function createConnect<State extends AllowableStateTypes>(
-  Consumer: React.Consumer<ImmerContextProps<State>>
+  Consumer: React.Consumer<ImmerConnectInjectedProps<State>>
 ) {
   const connect: Connect<State> = <M extends {} = {}, O extends {} = {}>(
     mapFn?: ConnectMap<M, O, State>
