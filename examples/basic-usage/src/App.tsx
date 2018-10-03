@@ -1,8 +1,8 @@
 import {
   createBindings,
-  ImmerContextProps,
-  ImmerContextUpdateFn
-} from 'immer-context';
+  ImmerConnectInjectedProps,
+  SetCtxInnerFn
+} from 'immer-connect';
 import * as React from 'react';
 
 interface IContextState {
@@ -15,10 +15,10 @@ const initialState: IContextState = {
   clickCount: 0
 };
 
-// defaultState param can be ignored when we are 100% certain all connected components have a parent provider
-const { Provider, connect } = createBindings<IContextState>(
-  {} as IContextState
-);
+const { Provider, connect } = createBindings<IContextState>({
+  value: -999,
+  clickCount: -999
+});
 
 class App extends React.Component {
   public render() {
@@ -45,59 +45,60 @@ const Content: React.SFC<{}> = props => {
 };
 
 const UpdateControllerRender: React.SFC<
-  ImmerContextProps<IContextState>
+  ImmerConnectInjectedProps<IContextState>
 > = props => {
   return (
     <div>
-      <button onClick={() => props.setState(actions.subtract)}>-</button>
-      <button onClick={() => props.setState(actions.add)}>+</button>
+      <button onClick={() => props.setCtx(actions.subtract)}>-</button>
+      <button onClick={() => props.setCtx(actions.add)}>+</button>
     </div>
   );
 };
 
-const UpdateController = connect(UpdateControllerRender);
+const UpdateController = connect()(UpdateControllerRender);
 
 interface IValueDisplayOwnProps {
   label: string;
 }
 const ValueDisplayRender: React.SFC<
-  ImmerContextProps<IContextState> & IValueDisplayOwnProps
+  ImmerConnectInjectedProps<IContextState> & IValueDisplayOwnProps
 > = props => {
   return (
     <div>
       <div>
-        {props.label}: {props.state.value}
+        {props.label}: {props.ctx.value}
       </div>
     </div>
   );
 };
 
-// Explicitly passing state interface and ownprops as type params guarantees
-// type safety of required props
-const ValueDisplay = connect<IContextState, IValueDisplayOwnProps>(
-  ValueDisplayRender
-);
+// Leave connect param empty to pass ctx and setCtx directly to component
+const ValueDisplay = connect()(ValueDisplayRender);
 
 interface IClickCountDisplayOwnProps {
   label: string;
 }
 const ClickCountDisplayRender: React.SFC<
-  ImmerContextProps<IContextState> & IClickCountDisplayOwnProps
+  IClickCountDisplayOwnProps & IClickCountDisplayMapProps
 > = props => {
   return (
     <div>
       <div>
-        {props.label}: {props.state.clickCount}
+        {props.label}: {props.value}
       </div>
     </div>
   );
 };
 
-// Inference of required props and injected props works well when
-// ImmerContextProps<State> is used as a prop
-const ClickCountDisplay = connect(ClickCountDisplayRender);
+// Pass a 'map to props' function to connect to get specific things out of state
+// Hint: use selectors here!
+type IClickCountDisplayMapProps = ReturnType<typeof mapToProps>;
+const mapToProps = (s: IContextState) => ({
+  value: s.clickCount
+});
+const ClickCountDisplay = connect(mapToProps)(ClickCountDisplayRender);
 
-const actions: { [key: string]: ImmerContextUpdateFn<IContextState> } = {
+const actions: { [key: string]: SetCtxInnerFn<IContextState> } = {
   add: s => {
     s.value += 1;
     s.clickCount += 1;

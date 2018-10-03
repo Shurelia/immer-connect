@@ -1,42 +1,48 @@
 import produce from 'immer';
 import * as React from 'react';
 import {
-  ImmerContextProps,
-  ImmerContextProviderProps,
-  ImmerContextUpdateFn
-} from './index.d';
+  AllowableStateTypes,
+  ImmerConnectInjectedProps,
+  ImmerConnectProviderProps,
+  SetCtx
+} from './types';
 
 interface ImmerContextProviderState<S> {
   value: S;
 }
 
 type ReactProvider<S> = React.ComponentType<
-  React.ProviderProps<ImmerContextProps<S>>
+  React.ProviderProps<ImmerConnectInjectedProps<S>>
 >;
 
 type ImmerConnectProvider<S> = React.ComponentClass<
-  ImmerContextProviderProps<S>,
+  ImmerConnectProviderProps<S>,
   ImmerContextProviderState<S>
 >;
 
-export const createProvider = <S extends any>(
-  ProviderComponent: ReactProvider<S>
+export const createProvider = <S extends AllowableStateTypes>(
+  ProviderComponent: ReactProvider<S>,
+  defaultState: S
 ): ImmerConnectProvider<S> => {
   return class Provider extends React.Component<
-    ImmerContextProviderProps<S>,
+    ImmerConnectProviderProps<S>,
     ImmerContextProviderState<S>
   > {
-    constructor(props: ImmerContextProviderProps<S>) {
+    static defaultProps = {
+      initialState: defaultState
+    };
+
+    constructor(props: ImmerConnectProviderProps<S>) {
       super(props);
-      this.state = { value: props.initialState };
+      this.state = { value: props.initialState! }; // defaultProps handles undefined case
     }
 
-    updateState = (fn: ImmerContextUpdateFn<S>) => {
+    updateState: SetCtx<S> = fn => {
       this.setState({ value: produce(this.state.value, s => fn(s)) });
     };
 
     render() {
-      const ctxValue = { state: this.state.value, setState: this.updateState };
+      const ctxValue = { ctx: this.state.value, setCtx: this.updateState };
       return (
         <ProviderComponent value={ctxValue}>
           {this.props.children}
