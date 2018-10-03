@@ -1,16 +1,36 @@
 import { Draft } from 'immer';
 import { Component, ComponentClass, ComponentType } from 'react';
 
-export type ImmerContextUpdateFn<S extends {}> = (
-  draftState: Draft<S>
-) => void | S;
+export interface ICreateBindings {
+  <State>(defaultState: State): {
+    connect: Connect<State>;
+    Provider: ImmerContextProvider<State>;
+  };
+}
 
-export interface ImmerContextProps<S extends {}> {
+export const createBindings: ICreateBindings;
+export default createBindings;
+
+export interface Connect<State> {
+  <Context extends State, OwnProps>(
+    Component: React.StatelessComponent<OwnProps & ImmerContextProps<Context>>
+  ): React.ComponentType<
+    Omit<OwnProps, Extract<keyof OwnProps, keyof ImmerContextProps<{}>>>
+  >;
+}
+
+export type ImmerContextProvider<S> = React.ComponentClass<
+  ImmerContextProviderProps<S>
+>;
+
+export type ImmerContextUpdateFn<S> = (draftState: Draft<S>) => void | S;
+
+export interface ImmerContextProps<S> {
   state: S;
   setState: (fn: ImmerContextUpdateFn<S>) => void;
 }
 
-export interface ImmerContextProviderProps<S extends {}> {
+export interface ImmerContextProviderProps<S> {
   initialState: S;
 }
 

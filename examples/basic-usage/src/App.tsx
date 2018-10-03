@@ -1,8 +1,7 @@
 import {
-  connect,
+  createBindings,
   ImmerContextProps,
-  ImmerContextUpdateFn,
-  Provider
+  ImmerContextUpdateFn
 } from 'immer-context';
 import * as React from 'react';
 
@@ -15,6 +14,11 @@ const initialState: IContextState = {
   value: 0,
   clickCount: 0
 };
+
+// defaultState param can be ignored when we are 100% certain all connected components have a parent provider
+const { Provider, connect } = createBindings<IContextState>(
+  {} as IContextState
+);
 
 class App extends React.Component {
   public render() {
