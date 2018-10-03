@@ -4,20 +4,24 @@ import {
   ImmerContextProps,
   ImmerContextProviderProps,
   ImmerContextUpdateFn
-} from './types';
+} from './index.d';
 
-export interface ImmerContextProviderState<S> {
+interface ImmerContextProviderState<S> {
   value: S;
 }
 
-export const createProvider = <S extends {}>(
-  ProviderComponent: React.ComponentType<
-    React.ProviderProps<ImmerContextProps<S>>
-  >
-): React.ComponentClass<
+type ReactProvider<S> = React.ComponentType<
+  React.ProviderProps<ImmerContextProps<S>>
+>;
+
+type ImmerConnectProvider<S> = React.ComponentClass<
   ImmerContextProviderProps<S>,
   ImmerContextProviderState<S>
-> => {
+>;
+
+export const createProvider = <S extends any>(
+  ProviderComponent: ReactProvider<S>
+): ImmerConnectProvider<S> => {
   return class Provider extends React.Component<
     ImmerContextProviderProps<S>,
     ImmerContextProviderState<S>

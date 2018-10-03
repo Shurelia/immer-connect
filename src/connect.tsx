@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { ImmerContextProps, Omit } from './types';
-
-type IsDeclared<O, I> = O extends undefined ? I : O;
+import { Connect, ImmerContextProps } from './index.d';
 
 export function createConnect<DeclaredContext>(
   Consumer: React.Consumer<ImmerContextProps<any>>
@@ -17,12 +15,4 @@ export function createConnect<DeclaredContext>(
   };
 
   return connect;
-}
-
-export interface Connect<DeclaredContext> {
-  <Context extends DeclaredContext, OwnProps>(
-    Component: React.StatelessComponent<OwnProps & ImmerContextProps<Context>>
-  ): React.ComponentType<
-    Omit<OwnProps, Extract<keyof OwnProps, keyof ImmerContextProps<{}>>>
-  >;
 }
