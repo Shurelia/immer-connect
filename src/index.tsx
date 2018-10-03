@@ -23,9 +23,9 @@ export const createBindings: ICreateBindings = <S extends AllowableStateTypes>(
 };
 
 const getContext = <S extends AllowableStateTypes>(defaultState: S) => {
-  const setState = (fn: (s: Draft<S>) => void) => {};
-  const state = defaultState;
-  return createReactContext({ state, setState }) as React.Context<
+  const setCtx = (fn: (s: Draft<S>) => void) => {};
+  const ctx = defaultState;
+  return createReactContext({ ctx, setCtx }) as React.Context<
     ImmerContextProps<S>
   >; // create-react-context using incompatible typings
 };

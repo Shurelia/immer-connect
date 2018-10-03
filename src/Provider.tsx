@@ -42,7 +42,7 @@ export const createProvider = <S extends AllowableStateTypes>(
     };
 
     render() {
-      const ctxValue = { state: this.state.value, setState: this.updateState };
+      const ctxValue = { ctx: this.state.value, setCtx: this.updateState };
       return (
         <ProviderComponent value={ctxValue}>
           {this.props.children}
