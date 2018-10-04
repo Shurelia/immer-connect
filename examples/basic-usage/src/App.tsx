@@ -2,7 +2,7 @@ import {
   createBindings,
   ImmerConnectInjectedProps,
   SetCtxInnerFn
-} from 'immer-connect';
+} from '@shurelia/immer-connect';
 import * as React from 'react';
 
 interface IContextState {

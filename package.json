@@ -1,7 +1,6 @@
 {
-  "name": "immer-connect",
+  "name": "@shurelia/immer-connect",
   "version": "0.0.1",
-  "private": true,
   "description": "Shared, mutable state across components",
   "author": "E. Curry <e@curry.sh> (https://github.com/Shurelia)",
   "homepage": "https://github.com/Shurelia/immer-connect",

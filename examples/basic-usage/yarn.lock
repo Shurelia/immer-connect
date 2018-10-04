@@ -16,6 +16,13 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@shurelia/immer-connect@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@shurelia/immer-connect/-/immer-connect-0.0.1.tgz#87602fa4d46f7221a233efbff7d4bc44033a9c9a"
+  dependencies:
+    create-react-context "^0.2.3"
+    immer "^1.6.0"
+
 "@types/jest@^23.3.2":
   version "23.3.2"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.2.tgz#07b90f6adf75d42c34230c026a2529e56c249dbb"
@@ -3264,13 +3271,6 @@ ignore-walk@^3.0.1:
   resolved "https://registry.yarnpkg.com/ignore-walk/-/ignore-walk-3.0.1.tgz#a83e62e7d272ac0e3b551aaa82831a19b69f82f8"
   dependencies:
     minimatch "^3.0.4"
-
-"immer-connect@github:Shurelia/immer-connect#dist":
-  version "0.0.1"
-  resolved "https://codeload.github.com/Shurelia/immer-connect/tar.gz/c632135a48fa7ce4a5d194447a23033d428b34df"
-  dependencies:
-    create-react-context "^0.2.3"
-    immer "^1.6.0"
 
 immer@^1.6.0:
   version "1.7.2"
