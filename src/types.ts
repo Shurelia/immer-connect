@@ -1,4 +1,5 @@
 import { Draft } from 'immer';
+import { ComponentType } from 'react';
 
 export interface SetCtx<S extends AllowableStateTypes> {
   (fn: SetCtxInnerFn<S>): void;
@@ -15,6 +16,7 @@ export interface ImmerConnectInjectedProps<S extends AllowableStateTypes> {
 
 export interface ImmerConnectProviderProps<S extends AllowableStateTypes> {
   initialState?: S;
+  render?: ComponentType<ImmerConnectInjectedProps<S>>;
 }
 
 export type AllowableStateTypes = boolean | string | number | any[] | {};

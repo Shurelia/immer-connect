@@ -43,8 +43,12 @@ export const createProvider = <S extends AllowableStateTypes>(
 
     render() {
       const ctxValue = { ctx: this.state.value, setCtx: this.updateState };
+      const RenderComponent = this.props.render;
       return (
         <ProviderComponent value={ctxValue}>
+          {RenderComponent === undefined ? null : (
+            <RenderComponent {...ctxValue} />
+          )}
           {this.props.children}
         </ProviderComponent>
       );
