@@ -46,10 +46,13 @@ export const createProvider = <S extends AllowableStateTypes>(
       const RenderComponent = this.props.render;
       return (
         <ProviderComponent value={ctxValue}>
-          {RenderComponent === undefined ? null : (
-            <RenderComponent {...ctxValue} />
+          {RenderComponent === undefined ? (
+            this.props.children
+          ) : (
+            <RenderComponent {...ctxValue}>
+              {this.props.children}
+            </RenderComponent>
           )}
-          {this.props.children}
         </ProviderComponent>
       );
     }
