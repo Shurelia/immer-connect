@@ -9,16 +9,18 @@ export function createConnect<State extends AllowableStateTypes>(
     mapFn?: ConnectMap<M, O, State>
   ) => {
     if (mapFn === undefined) {
-      return <A extends any>(Component: React.ComponentType<A>) => {
-        return (props: A) => (
+      return (
+        Component: React.ComponentType<ImmerConnectInjectedProps<State> & O>
+      ) => {
+        return (props: O) => (
           <Consumer>
             {val => <Component ctx={val.ctx} setCtx={val.setCtx} {...props} />}
           </Consumer>
         );
       };
     } else {
-      return <A extends O>(Component: React.ComponentType<O>) => {
-        return (props: A) => (
+      return (Component: React.ComponentType<M>) => {
+        return (props: O) => (
           <Consumer>
             {val => {
               const newProps = mapFn(val.ctx, val.setCtx, props);
