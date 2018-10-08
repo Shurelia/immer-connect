@@ -1,18 +1,25 @@
-import { createBindings, SetCtxInnerFn } from '@shurelia/immer-connect';
+import { createBindings } from '@shurelia/immer-connect';
+import { Draft } from 'immer';
 
 export interface IBasicCounterState {
   value: number;
   clickCount: number;
 }
 
-export const basicCounterActions: {
-  [key: string]: SetCtxInnerFn<IBasicCounterState>;
-} = {
-  add: s => {
-    s.value += 1;
+// TODO: Maybe include this in return of createBindings as a helper function?
+// Allows us to not have to type 's' as Draft<IBasicCounterState>
+/*
+  const createAction: (
+    fn: SetCtxInnerFn<IBasicCounterState>
+  ) => SetCtxInnerFn<IBasicCounterState> = fn => fn;
+*/
+
+export const basicCounterActions = {
+  add: (amount: number) => (s: Draft<IBasicCounterState>) => {
+    s.value += amount;
     s.clickCount += 1;
   },
-  subtract: s => {
+  subtract: () => (s: Draft<IBasicCounterState>) => {
     s.value -= 1;
     s.clickCount += 1;
   }

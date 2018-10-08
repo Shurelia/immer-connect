@@ -1,6 +1,8 @@
 import React from 'react';
 import { basicCounterConnect, IBasicCounterState } from './store';
 
+// OwnProps interface defined here to demonstrate that connect
+// correctly infers the props that should be passed through
 interface IClickCountDisplayOwnProps {
   label: string;
 }
