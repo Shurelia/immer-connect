@@ -1,4 +1,4 @@
-import React, { CSSProperties, SFC } from 'react';
+import * as React from 'react';
 import { ThemeProvider } from './store';
 import ThemedContainer from './ThemedContainer';
 import ThemedText from './ThemedText';
@@ -6,7 +6,7 @@ import UpdateThemeButtonSet from './UpdateThemeButtonSet';
 import UpdateThemeSelect from './UpdateThemeSelect';
 
 interface IThemeExampleProps {}
-const ThemeExample: SFC<IThemeExampleProps> = props => {
+const ThemeExample: React.SFC<IThemeExampleProps> = props => {
   return (
     <ThemeProvider>
       <div style={containerStyle}>
@@ -49,7 +49,7 @@ const ThemeExample: SFC<IThemeExampleProps> = props => {
 
 export default ThemeExample;
 
-const containerStyle: CSSProperties = {
+const containerStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'row',
   height: '30em',

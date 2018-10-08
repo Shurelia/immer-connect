@@ -1,5 +1,5 @@
 import { createBindings } from '@ecurry/immer-connect';
-import React, { SFC } from 'react';
+import * as React from 'react';
 import BasicCounter from './basicCounter';
 import ThemeExample from './theming';
 
@@ -16,7 +16,7 @@ const { Provider } = createBindings<IRouterState>({ route: ERoutes.COUNTER });
 
 // Provider takes a prop 'render' with the type ComponentType<ImmerConnectInjectedProps<State>>,
 // letting you directly consume your state, in instances where you want direct access to those values
-export const Router: SFC<{}> = () => {
+export const Router: React.SFC<{}> = () => {
   return (
     <Provider
       render={({ ctx, setCtx }) => {
@@ -35,7 +35,7 @@ export const Router: SFC<{}> = () => {
 interface IRouteControllerProps {
   setRoute: (route: ERoutes) => void;
 }
-const RouteController: SFC<IRouteControllerProps> = props => {
+const RouteController: React.SFC<IRouteControllerProps> = props => {
   return (
     <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2em' }}>
       Examples:

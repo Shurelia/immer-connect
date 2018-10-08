@@ -1,10 +1,10 @@
-import React, { SFC } from 'react';
+import * as React from 'react';
 import { IThemeWriterProps, withThemeWriter } from './store';
 
 interface IUpdateThemeSelectProps extends IThemeWriterProps {
   colors: string[];
 }
-const UpdateThemeSelect: SFC<IUpdateThemeSelectProps> = props => {
+const UpdateThemeSelect: React.SFC<IUpdateThemeSelectProps> = props => {
   const colorOptions = props.colors.map((i, idx) => {
     return (
       <option key={idx} value={i} style={{ backgroundColor: i }}>

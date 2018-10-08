@@ -1,10 +1,10 @@
-import React, { SFC } from 'react';
+import * as React from 'react';
 import { IThemeWriterProps, withThemeWriter } from './store';
 
 interface IUpdateThemeButtonProps extends IThemeWriterProps {
   color: string;
 }
-const UpdateThemeButton: SFC<IUpdateThemeButtonProps> = props => {
+const UpdateThemeButton: React.SFC<IUpdateThemeButtonProps> = props => {
   const { color, setBackgroundColor } = props;
   return (
     <button

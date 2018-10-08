@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import * as React from 'react';
 import { ClickCountDisplay } from './ClickCountDisplay';
 import { BasicCounterProvider } from './store';
 import { UpdateController } from './UpdateController';
@@ -11,7 +11,7 @@ const basicCounterInitialState = {
   clickCount: 0
 };
 interface IBasicCounterProps {}
-const BasicCounter: SFC<IBasicCounterProps> = props => {
+const BasicCounter: React.SFC<IBasicCounterProps> = props => {
   return (
     <BasicCounterProvider initialState={basicCounterInitialState}>
       <div>

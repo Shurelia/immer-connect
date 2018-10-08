@@ -1,10 +1,10 @@
-import React, { CSSProperties, SFC } from 'react';
+import * as React from 'react';
 import UpdateThemeButton from './UpdateThemeButton';
 
 interface IUpdateThemeButtonSetProps {
   colors: string[];
 }
-const UpdateThemeButtonSet: SFC<IUpdateThemeButtonSetProps> = props => {
+const UpdateThemeButtonSet: React.SFC<IUpdateThemeButtonSetProps> = props => {
   return (
     <div style={containerStyle}>
       {props.colors.map((i, idx) => {
@@ -16,7 +16,7 @@ const UpdateThemeButtonSet: SFC<IUpdateThemeButtonSetProps> = props => {
 
 export default UpdateThemeButtonSet;
 
-const containerStyle: CSSProperties = {
+const containerStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-around',

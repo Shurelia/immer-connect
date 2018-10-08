@@ -1,5 +1,5 @@
 import { ImmerConnectInjectedProps } from '@ecurry/immer-connect';
-import React from 'react';
+import * as React from 'react';
 import { basicCounterConnect, IBasicCounterState } from './store';
 
 interface IValueDisplayOwnProps {
