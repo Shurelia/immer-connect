@@ -5,7 +5,7 @@ import { UpdateController } from './UpdateController';
 import { ValueDisplay } from './ValueDisplay';
 
 // initial state can be passed as a prop to the Provider component
-// useful for getting async data first to initialize with, among other things!
+// useful for getting async data first to initialize with, among other things
 const basicCounterInitialState = {
   value: 0,
   clickCount: 0

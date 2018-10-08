@@ -17,11 +17,11 @@ const UpdateControllerRender: SFC<IUpdateControllerProps> = props => {
 
 type IUpdateControllerProps = ReturnType<typeof mapToProps>;
 const mapToProps = (
-  s: IBasicCounterState,
-  set: SetCtx<IBasicCounterState>
+  ctx: IBasicCounterState,
+  setCtx: SetCtx<IBasicCounterState>
 ) => ({
-  add: () => set(basicCounterActions.add),
-  subtract: () => set(basicCounterActions.subtract)
+  add: () => setCtx(basicCounterActions.add(1)),
+  subtract: () => setCtx(basicCounterActions.subtract())
 });
 export const UpdateController = basicCounterConnect(mapToProps)(
   UpdateControllerRender
