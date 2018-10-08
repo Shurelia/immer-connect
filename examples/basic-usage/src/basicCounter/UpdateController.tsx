@@ -1,12 +1,12 @@
 import { SetCtx } from '@ecurry/immer-connect';
-import React, { SFC } from 'react';
+import * as React from 'react';
 import {
   basicCounterActions,
   basicCounterConnect,
   IBasicCounterState
 } from './store';
 
-const UpdateControllerRender: SFC<IUpdateControllerProps> = props => {
+const UpdateControllerRender: React.SFC<IUpdateControllerProps> = props => {
   return (
     <div>
       <button onClick={props.subtract}>-</button>

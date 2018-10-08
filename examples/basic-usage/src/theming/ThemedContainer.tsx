@@ -1,11 +1,11 @@
-import React, { CSSProperties, SFC } from 'react';
+import * as React from 'react';
 import { StringMap } from '../utils';
 import { IThemeReaderProps, withThemeReader } from './store';
 
 interface IThemedContainerProps extends IThemeReaderProps {
-  style?: CSSProperties;
+  style?: React.CSSProperties;
 }
-const ThemedContainer: SFC<IThemedContainerProps> = props => {
+const ThemedContainer: React.SFC<IThemedContainerProps> = props => {
   const themeStyles = { backgroundColor: props.backgroundColor };
   const computedStyles = {
     ...themeStyles,
@@ -20,7 +20,7 @@ ThemedContainer.defaultProps = {
 
 export default withThemeReader(ThemedContainer);
 
-const styles: StringMap<CSSProperties> = {
+const styles: StringMap<React.CSSProperties> = {
   container: {
     display: 'flex',
     flexDirection: 'column',
