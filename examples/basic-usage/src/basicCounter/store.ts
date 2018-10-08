@@ -10,8 +10,8 @@ export interface IBasicCounterState {
 // Allows us to not have to type 's' as Draft<IBasicCounterState>
 /*
   const createAction: (
-    fn: SetCtxInnerFn<IBasicCounterState>
-  ) => SetCtxInnerFn<IBasicCounterState> = fn => fn;
+    fn: SetCtxInner<IBasicCounterState>
+  ) => SetCtxInner<IBasicCounterState> = fn => fn;
 */
 
 export const basicCounterActions = {

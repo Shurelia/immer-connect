@@ -19,7 +19,7 @@
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "paths": {
-      "src/*": ["../../src/*"]
+      "src/*": ["./src/*"]
     }
   },
   "exclude": [

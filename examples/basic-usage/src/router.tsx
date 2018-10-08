@@ -23,7 +23,7 @@ export const Router: SFC<{}> = () => {
         const RouteComponent = getRouteComponentForRoute(ctx.route);
         return (
           <div>
-            <RouteController setRoute={route => setCtx(s => ({ route }))} />
+            <RouteController setRoute={route => setCtx({ route })} />
             <RouteComponent />
           </div>
         );

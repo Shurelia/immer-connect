@@ -1,5 +1,5 @@
-import { Router } from '@shurelia/immer-connect/examples/basic-usage/src/router';
 import * as React from 'react';
+import { Router } from './router';
 
 class App extends React.Component {
   public render() {
