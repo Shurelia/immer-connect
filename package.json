@@ -1,5 +1,5 @@
 {
-  "name": "@shurelia/immer-connect",
+  "name": "@ecurry/immer-connect",
   "version": "0.0.1",
   "description": "Shared, mutable state across components",
   "author": "E. Curry <e@curry.sh> (https://github.com/Shurelia)",
@@ -29,7 +29,7 @@
     "clean": "rimraf dist",
     "precommit": "lint-staged",
     "prepublishOnly": "npm run build",
-    "release": "np --no-cleanup"
+    "release": "np --no-cleanup --yolo"
   },
   "keywords": [
     "react",
@@ -69,6 +69,9 @@
   "peerDependencies": {
     "prop-types": "^15.0.0",
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

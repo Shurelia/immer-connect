@@ -1,4 +1,4 @@
-import { ImmerConnectInjectedProps } from '@shurelia/immer-connect';
+import { ImmerConnectInjectedProps } from '@ecurry/immer-connect';
 import React from 'react';
 import { basicCounterConnect, IBasicCounterState } from './store';
 
