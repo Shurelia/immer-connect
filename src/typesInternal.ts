@@ -1,3 +1,4 @@
+import { Draft } from 'immer';
 import { ComponentType } from 'react';
 import {
   AllowableStateTypes,
@@ -16,6 +17,10 @@ export interface ICreateBindings {
 type ImmerContextProvider<S extends AllowableStateTypes> = React.ComponentClass<
   ImmerConnectProviderProps<S>
 >;
+
+export interface SetCtxInnerFn<S extends AllowableStateTypes> {
+  (draftState: Draft<S>): any;
+}
 
 export interface Connect<State extends AllowableStateTypes> {
   <no_map = {}, OwnProps = {}>(): InferrableComponentEnhancer<

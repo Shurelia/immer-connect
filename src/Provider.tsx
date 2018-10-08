@@ -4,8 +4,10 @@ import {
   AllowableStateTypes,
   ImmerConnectInjectedProps,
   ImmerConnectProviderProps,
-  SetCtx
+  SetCtx,
+  SetCtxInner
 } from './types';
+import { SetCtxInnerFn } from './typesInternal';
 
 interface ImmerContextProviderState<S> {
   value: S;
@@ -37,8 +39,13 @@ export const createProvider = <S extends AllowableStateTypes>(
       this.state = { value: props.initialState! }; // defaultProps handles undefined case
     }
 
-    updateState: SetCtx<S> = fn => {
-      this.setState({ value: produce(this.state.value, s => fn(s)) });
+    updateState: SetCtx<S> = setCtxInner => {
+      const value = isImmerFn(setCtxInner)
+        ? produce(this.state.value, s => {
+            setCtxInner(s);
+          })
+        : setCtxInner;
+      this.setState({ value });
     };
 
     render() {
@@ -57,4 +64,10 @@ export const createProvider = <S extends AllowableStateTypes>(
       );
     }
   };
+};
+
+const isImmerFn = <S extends AllowableStateTypes>(
+  v: SetCtxInner<S>
+): v is SetCtxInnerFn<S> => {
+  return typeof v === 'function';
 };
