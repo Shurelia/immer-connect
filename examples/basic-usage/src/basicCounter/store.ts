@@ -1,4 +1,4 @@
-import { createBindings } from '@shurelia/immer-connect';
+import { createBindings } from '@ecurry/immer-connect';
 import { Draft } from 'immer';
 
 export interface IBasicCounterState {

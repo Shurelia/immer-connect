@@ -1,4 +1,4 @@
-import { createBindings } from '@shurelia/immer-connect';
+import { createBindings } from '@ecurry/immer-connect';
 import React, { SFC } from 'react';
 import BasicCounter from './basicCounter';
 import ThemeExample from './theming';

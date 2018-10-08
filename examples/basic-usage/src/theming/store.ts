@@ -1,4 +1,4 @@
-import { createBindings, SetCtx } from '@shurelia/immer-connect';
+import { createBindings, SetCtx } from '@ecurry/immer-connect';
 import { Draft } from 'immer';
 
 export interface IThemeState {

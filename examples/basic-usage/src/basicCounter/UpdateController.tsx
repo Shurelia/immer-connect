@@ -1,4 +1,4 @@
-import { SetCtx } from '@shurelia/immer-connect';
+import { SetCtx } from '@ecurry/immer-connect';
 import React, { SFC } from 'react';
 import {
   basicCounterActions,
