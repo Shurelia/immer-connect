@@ -16,9 +16,8 @@ const { Provider, connect } = createBindings(initialState);
 export const ThemeProvider = Provider;
 
 const actions = {
-  setBackgroundColor: (color: string) => (s: Draft<IThemeState>) => {
-    s.backgroundColor = color;
-  }
+  setBackgroundColor: (color: string) => (s: Draft<IThemeState>) =>
+    (s.backgroundColor = color)
 };
 
 const mapReadToProps = (ctx: IThemeState) => ({ ...ctx });

@@ -1,8 +1,5 @@
-import {
-  IThemeReaderProps,
-  withThemeReader
-} from '@shurelia/immer-connect/examples/basic-usage/src/theming/store';
 import React, { SFC } from 'react';
+import { IThemeReaderProps, withThemeReader } from './store';
 
 interface IThemedTextProps extends IThemeReaderProps {}
 const ThemedText: SFC<IThemedTextProps> = props => {
