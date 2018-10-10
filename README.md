@@ -77,7 +77,7 @@ const App = () => (
     initialState={{ val: 0 }}
     render={({ ctx, setCtx }) => (
       <div>
-        <button onClick={() => setCtx(s => (s += 1))}>{val}</button>
+        <button onClick={() => setCtx(s => (s += 1))}>{ctx.val}</button>
       </div>
     )}
   />
