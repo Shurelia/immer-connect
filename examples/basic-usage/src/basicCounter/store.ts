@@ -6,13 +6,19 @@ export interface IBasicCounterState {
   clickCount: number;
 }
 
-// TODO: Maybe include this in return of createBindings as a helper function?
-// Allows us to not have to type 's' as Draft<IBasicCounterState>
-/*
-  const createAction: (
-    fn: SetCtxInner<IBasicCounterState>
-  ) => SetCtxInner<IBasicCounterState> = fn => fn;
-*/
+/**
+ * TODO: Maybe include this in return of createBindings as a helper function?
+ * const createAction: (
+ *   fn: SetCtxInner<IBasicCounterState>
+ * ) => SetCtxInner<IBasicCounterState> = fn => fn;
+ *
+ * Allows us to not have to type 's' as Draft<IBasicCounterState>
+ * Usage would be:
+ * add: (amount: number) => createAction(s => {
+ *   s.value += amount;
+ *   s.clickCount += 1;
+ * })
+ */
 
 export const basicCounterActions = {
   add: (amount: number) => (s: Draft<IBasicCounterState>) => {
