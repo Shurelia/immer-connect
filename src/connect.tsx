@@ -1,17 +1,35 @@
 import * as React from 'react';
-import { AllowableStateTypes, Connect, ImmerContextProps } from './index.d';
+import { AllowableStateTypes, ImmerConnectInjectedProps } from './types';
+import { Connect, ConnectMap } from './typesInternal';
 
 export function createConnect<State extends AllowableStateTypes>(
-  Consumer: React.Consumer<ImmerContextProps<any>>
+  Consumer: React.Consumer<ImmerConnectInjectedProps<State>>
 ) {
-  const connect: Connect<State> = Component => {
-    return props => (
-      <Consumer>
-        {val => (
-          <Component state={val.state} setState={val.setState} {...props} />
-        )}
-      </Consumer>
-    );
+  const connect: Connect<State> = <M extends {} = {}, O extends {} = {}>(
+    mapFn?: ConnectMap<M, O, State>
+  ) => {
+    if (mapFn === undefined) {
+      return (
+        Component: React.ComponentType<ImmerConnectInjectedProps<State> & O>
+      ) => {
+        return (props: O) => (
+          <Consumer>
+            {val => <Component ctx={val.ctx} setCtx={val.setCtx} {...props} />}
+          </Consumer>
+        );
+      };
+    } else {
+      return (Component: React.ComponentType<M>) => {
+        return (props: O) => (
+          <Consumer>
+            {val => {
+              const newProps = mapFn(val.ctx, val.setCtx, props);
+              return <Component {...props} {...newProps} />;
+            }}
+          </Consumer>
+        );
+      };
+    }
   };
 
   return connect;

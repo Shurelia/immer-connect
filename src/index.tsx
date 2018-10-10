@@ -2,12 +2,9 @@ import createReactContext from 'create-react-context';
 import { Draft } from 'immer';
 import * as React from 'react';
 import { createConnect } from './connect';
-import {
-  AllowableStateTypes,
-  ICreateBindings,
-  ImmerContextProps
-} from './index.d';
 import { createProvider } from './Provider';
+import { AllowableStateTypes, ImmerConnectInjectedProps } from './types';
+import { ICreateBindings } from './typesInternal';
 
 export const createBindings: ICreateBindings = <S extends AllowableStateTypes>(
   defaultState: S
@@ -23,10 +20,10 @@ export const createBindings: ICreateBindings = <S extends AllowableStateTypes>(
 };
 
 const getContext = <S extends AllowableStateTypes>(defaultState: S) => {
-  const setState = (fn: (s: Draft<S>) => void) => {};
-  const state = defaultState;
-  return createReactContext({ state, setState }) as React.Context<
-    ImmerContextProps<S>
+  const setCtx = (fn: (s: Draft<S>) => void) => {};
+  const ctx = defaultState;
+  return createReactContext({ ctx, setCtx }) as React.Context<
+    ImmerConnectInjectedProps<S>
   >; // create-react-context using incompatible typings
 };
 
