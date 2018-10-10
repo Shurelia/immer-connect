@@ -2,21 +2,23 @@ import produce from 'immer';
 import * as React from 'react';
 import {
   AllowableStateTypes,
-  ImmerContextProps,
-  ImmerContextProviderProps,
-  ImmerContextUpdateFn
-} from './index.d';
+  ImmerConnectInjectedProps,
+  ImmerConnectProviderProps,
+  SetCtx,
+  SetCtxInner
+} from './types';
+import { SetCtxInnerFn } from './typesInternal';
 
 interface ImmerContextProviderState<S> {
   value: S;
 }
 
 type ReactProvider<S> = React.ComponentType<
-  React.ProviderProps<ImmerContextProps<S>>
+  React.ProviderProps<ImmerConnectInjectedProps<S>>
 >;
 
 type ImmerConnectProvider<S> = React.ComponentClass<
-  ImmerContextProviderProps<S>,
+  ImmerConnectProviderProps<S>,
   ImmerContextProviderState<S>
 >;
 
@@ -25,29 +27,47 @@ export const createProvider = <S extends AllowableStateTypes>(
   defaultState: S
 ): ImmerConnectProvider<S> => {
   return class Provider extends React.Component<
-    ImmerContextProviderProps<S>,
+    ImmerConnectProviderProps<S>,
     ImmerContextProviderState<S>
   > {
     static defaultProps = {
       initialState: defaultState
     };
 
-    constructor(props: ImmerContextProviderProps<S>) {
+    constructor(props: ImmerConnectProviderProps<S>) {
       super(props);
       this.state = { value: props.initialState! }; // defaultProps handles undefined case
     }
 
-    updateState = (fn: ImmerContextUpdateFn<S>) => {
-      this.setState({ value: produce(this.state.value, s => fn(s)) });
+    updateState: SetCtx<S> = setCtxInner => {
+      const value = isImmerFn(setCtxInner)
+        ? produce(this.state.value, s => {
+            setCtxInner(s);
+          })
+        : setCtxInner;
+      this.setState({ value });
     };
 
     render() {
-      const ctxValue = { state: this.state.value, setState: this.updateState };
+      const ctxValue = { ctx: this.state.value, setCtx: this.updateState };
+      const RenderComponent = this.props.render;
       return (
         <ProviderComponent value={ctxValue}>
-          {this.props.children}
+          {RenderComponent === undefined ? (
+            this.props.children
+          ) : (
+            <RenderComponent {...ctxValue}>
+              {this.props.children}
+            </RenderComponent>
+          )}
         </ProviderComponent>
       );
     }
   };
+};
+
+const isImmerFn = <S extends AllowableStateTypes>(
+  v: SetCtxInner<S>
+): v is SetCtxInnerFn<S> => {
+  return typeof v === 'function';
 };
