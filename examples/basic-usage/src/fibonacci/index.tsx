@@ -1,4 +1,4 @@
-import createBindings, { SetCtx } from '@ecurry/immer-connect';
+import createBindings, { SetCtx } from 'immer-connect';
 import * as React from 'react';
 
 interface IFibonacciState {
@@ -18,16 +18,16 @@ type IFibonacciDisplayProps = ReturnType<typeof mapToProps>;
 const mapToProps = (ctx: IFibonacciState, setCtx: SetCtx<IFibonacciState>) => ({
   seq: ctx.seq,
   next: () =>
-    setCtx(s => {
-      const last = s.seq.length - 1;
-      s.seq.push(s.seq[last] + s.seq[last - 1]);
+    setCtx(d => {
+      const last = d.seq.length - 1;
+      d.seq.push(d.seq[last] + d.seq[last - 1]);
     })
 });
-const FibonacciContainer = connect(mapToProps)(FibonacciDisplay);
+const FibonacciConnected = connect(mapToProps)(FibonacciDisplay);
 
 const FibonacciExample = () => (
   <Provider>
-    <FibonacciContainer />
+    <FibonacciConnected />
   </Provider>
 );
 

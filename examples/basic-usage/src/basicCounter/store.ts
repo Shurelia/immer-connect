@@ -1,5 +1,5 @@
-import { createBindings } from '@ecurry/immer-connect';
 import { Draft } from 'immer';
+import { createBindings } from 'immer-connect';
 
 export interface IBasicCounterState {
   value: number;

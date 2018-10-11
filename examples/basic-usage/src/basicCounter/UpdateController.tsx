@@ -1,4 +1,4 @@
-import { SetCtx } from '@ecurry/immer-connect';
+import { SetCtx } from 'immer-connect';
 import * as React from 'react';
 import {
   basicCounterActions,

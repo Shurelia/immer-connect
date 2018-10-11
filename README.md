@@ -31,11 +31,11 @@ const mapToProps = (ctx, setCtx) => ({
       d.seq.push(d.seq[last] + d.seq[last - 1]);
     })
 });
-const FibonacciContainer = connect(mapToProps)(FibonacciDisplay);
+const FibonacciConnected = connect(mapToProps)(FibonacciDisplay);
 
 const App = () => (
   <Provider>
-    <FibonacciContainer />
+    <FibonacciConnected />
   </Provider>
 );
 

@@ -1,5 +1,5 @@
-import { createBindings, SetCtx } from '@ecurry/immer-connect';
 import { Draft } from 'immer';
+import { createBindings, SetCtx } from 'immer-connect';
 
 export interface IThemeState {
   backgroundColor: string;

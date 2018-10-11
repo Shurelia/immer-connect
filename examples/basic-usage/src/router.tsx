@@ -1,4 +1,4 @@
-import { createBindings } from '@ecurry/immer-connect';
+import { createBindings } from 'immer-connect';
 import * as React from 'react';
 import BasicCounter from './basicCounter';
 import FibonacciExample from './fibonacci';

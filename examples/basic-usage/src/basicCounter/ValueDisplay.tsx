@@ -1,4 +1,4 @@
-import { ImmerConnectInjectedProps } from '@ecurry/immer-connect';
+import { ImmerConnectInjectedProps } from 'immer-connect';
 import * as React from 'react';
 import { basicCounterConnect, IBasicCounterState } from './store';
 

@@ -18,14 +18,6 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@ecurry/immer-connect@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@ecurry/immer-connect/-/immer-connect-0.0.2.tgz#6541b76f785c0e002164a1f2abc48f40833b9c49"
-  integrity sha512-2KD4ELfp6ovThnjUju538EKuvOXZX7IVdqkyJMOBjbVORSEfshb0K2Q+3MPYT4RgBxXE0BdGK8twNkE972TJcw==
-  dependencies:
-    create-react-context "^0.2.3"
-    immer "^1.6.0"
-
 "@types/jest@^23.3.2":
   version "23.3.2"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.2.tgz#07b90f6adf75d42c34230c026a2529e56c249dbb"
@@ -3765,6 +3757,14 @@ ignore-walk@^3.0.1:
   integrity sha512-DTVlMx3IYPe0/JJcYP7Gxg7ttZZu3IInhuEhbchuqneY9wWe5Ojy2mXLBaQFUQmo0AW2r3qG7m1mg86js+gnlQ==
   dependencies:
     minimatch "^3.0.4"
+
+immer-connect@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/immer-connect/-/immer-connect-0.1.0.tgz#e2805519f93faaf850f13486def2d0c77440e56a"
+  integrity sha512-BCT6+WUq2iKU3ItQefHNjEJrXk1uUsvq2W2HB4ZCI2ravV8MJp6v6F0JiupMghLIcTXH+Iw5q0csCFHUU8lEGA==
+  dependencies:
+    create-react-context "^0.2.3"
+    immer "^1.6.0"
 
 immer@^1.6.0:
   version "1.7.2"
