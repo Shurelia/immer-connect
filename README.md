@@ -60,8 +60,8 @@ import createBindings from 'immer-connect';
 Creates set of React bindings to provide and consume a state store with the shape `S`. `defaultState` is the state initially received by connected components, and will also be received by connected components that have [no parent Provider](https://reactjs.org/docs/context.html#reactcreatecontext).  
 Returns an object that has the following properties:
 
-- [connect](#connect)
-- [Provider](#Provider)
+- [connect](#connectmaptoprops-function)
+- [Provider](#provider)
 
 ### `connect(mapToProps?: Function)`
 
