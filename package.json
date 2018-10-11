@@ -1,15 +1,15 @@
 {
-  "name": "@ecurry/immer-connect",
+  "name": "immer-connect",
   "version": "0.0.2",
   "description": "Shared, mutable state across components",
-  "author": "E. Curry <e@curry.sh> (https://github.com/Shurelia)",
-  "homepage": "https://github.com/Shurelia/immer-connect",
+  "author": "E. Curry <e@curry.sh> (https://github.com/shurelia)",
+  "homepage": "https://github.com/shurelia/immer-connect",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Shurelia/immer-connect.git"
+    "url": "git@github.com:shurelia/immer-connect.git"
   },
   "bugs": {
-    "url": "https://github.com/Shurelia/immer-connect/issues"
+    "url": "https://github.com/shurelia/immer-connect/issues"
   },
   "license": "MIT",
   "main": "dist/immerConnect.cjs.js",
@@ -32,7 +32,10 @@
     "release": "np --no-cleanup --yolo"
   },
   "keywords": [
+    "javascript",
+    "typescript",
     "react",
+    "state",
     "context",
     "immutable",
     "mutable",
