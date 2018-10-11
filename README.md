@@ -96,7 +96,9 @@ const withInjectedProps = connect(mapToProps);
 const ConnectedComponent = withInjectedProps(MyComponent);
 ```
 
-Combining all of this into a one-liner, a connected component can be generated from MyComponent like so:
+`ConnectedComponent` is a React component that passes three new props to `MyComponent`: the current `value`, a function `addOne` that incremenets the current value by one, and a function `reset` that resets the value to zero. Any additional props passed to `ConnectedComponent` are passed through to `MyComponent`.
+
+Combining all of this into a one-liner, a connected component can be generated from `MyComponent` like so:
 
 ```js
 const ConnectedComponent = connect((ctx, setCtx) => ({
@@ -132,7 +134,7 @@ const App = () => (
     initialState={{ val: 0 }}
     render={({ ctx, setCtx }) => (
       <div>
-        <button onClick={() => setCtx(s => (s += 1))}>{ctx.val}</button>
+        <button onClick={() => setCtx(d => (d.val += 1))}>{ctx.val}</button>
       </div>
     )}
   />
@@ -141,7 +143,7 @@ const App = () => (
 
 ### Extra Types
 
-In addition to the single function exported by this module, if you are using Typescript some utility types are exposed. They can be viewed [here](src/types.ts).
+In addition to the single function exported by this module, if you are using Typescript, some utility types are exposed. They can be viewed [here](src/types.ts).
 
 ## Gotchas
 
